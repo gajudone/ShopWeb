@@ -1,0 +1,9 @@
+.navbar { border-radius: 0px; margin-bottom: 0px;}
+.navbar-inverse { background: #3c523c; border: none; }
+.navbar-inverse .navbar-nav a { color: rgb(250, 246, 246); font-size:20px;}
+.navbar-inverse .navbar-header a { color: rgb(250, 246, 246);font-size: 24px;}
+.navbar-inverse .navbar-nav>li>a:hover {background-color: #9e2e2e;}
+nav { text-transform: uppercase;}
+.trash{ color: red;}
+.active { background-color: #9e2e2e;}
+#myNavbar ul li { cursor: pointer; }
