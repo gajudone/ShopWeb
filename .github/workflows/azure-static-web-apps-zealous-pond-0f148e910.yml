@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+  # You can keep PR triggers if you want to redeploy on PR merges,
+  # but we are not building anything here.
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
@@ -13,35 +15,30 @@ jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: Deploy prebuilt app (skip build)
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: true
           lfs: false
 
-      # 🔥 ADD THIS BLOCK EXACTLY HERE
-      - name: Use Node 16
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
-
-      # 🧱 Install Angular dependencies manually (recommended for old Angular apps)
-      - name: Install dependencies
-        run: npm install
-
-      # 🛠️ Build Angular app manually
-      - name: Build Angular app
-        run: npm run build --if-present
-
-      # 🚀 Deploy to Azure Static Web Apps
-      - name: Build And Deploy
-        id: builddeploy
+      - name: Deploy prebuilt app
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ZEALOUS_POND_0F148E910 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "/" 
-          api_location: "" 
-          output_location: "dist/ShopWeb"   # 🔥 FIXED
+          app_location: "dist/ShopWeb"   # PUBLISH THE BUILT FOLDER
+          output_location: ""            # not used when uploading prebuilt assets
+          skip_app_build: true           # CRITICAL: DO NOT RUN npm/ng BUILD IN CI
+
+  # (Optional) Keep your close pull request job if it exists in a separate block
+  # close_pull_request_job:
+  #   if: github.event_name == 'pull_request' && github.event.action == 'closed'
+  #   runs-on: ubuntu-latest
+  #   name: Close Pull Request Job
+  #   steps:
+  #     - name: Close Pull Request
+  #       uses: Azure/static-web-apps-deploy@v1
+  #       with:
+  #         azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ZEALOUS_POND_0F148E910 }}
+  #         action: "close"
