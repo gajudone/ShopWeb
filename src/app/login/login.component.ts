@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../core/auth.service'
 import * as $ from 'jquery';
 import { FormsModule } from '@angular/forms';
-import { UpdateService } from '/var/www/html/ShopWeb/src/app/update.service';
+import { UpdateService } from '../update.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router, Params } from '@angular/router';
 @Component({

@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { User } from 'firebase';
 import { auth } from  'firebase/app';
-import { UpdateService } from '/var/www/html/ShopWeb/src/app/update.service';
+import { UpdateService } from './update.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

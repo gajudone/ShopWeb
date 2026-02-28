@@ -6,12 +6,12 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment.prod';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from '/var/www/html/ShopWeb/src/app/home/home.component';
-import { LoginComponent } from './login/login.component'
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { UpdateService } from '/var/www/html/ShopWeb/src/app/update.service';
+import { UpdateService } from './update.service';
 import { Product2Component } from './product2/product2.component';
 import { UserResolver } from './user/user.resolver';
 import { AuthGuard } from './core/auth.guard';
