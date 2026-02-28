@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from '../core/auth.service'
 import * as $ from 'jquery';

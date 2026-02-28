@@ -1,7 +1,8 @@
 
 import * as $ from 'jquery';
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import { Router } from '@angular/router';
 
 @Component({
